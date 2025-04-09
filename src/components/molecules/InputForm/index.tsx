@@ -12,7 +12,7 @@ interface InputFormProps {
 }
 export const InputForm: React.FC<InputFormProps> = ({ inputsConfig, control, errors }) => {
   return (
-    <div>
+    <div className="flex  flex-col gap-[25px]">
       {inputsConfig?.map((elem: any, index: number) => (
         <div key={index}>
           <Controller

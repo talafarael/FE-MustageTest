@@ -1,13 +1,19 @@
 import { useState } from 'react'
 import './App.css'
 import { Router } from './router'
-
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { Theme } from "@radix-ui/themes";
+import "@radix-ui/themes/styles.css";
 function App() {
-  const [count, setCount] = useState(0)
+  const queryClient = new QueryClient()
 
   return (
     <div>
-      <Router />
+      <QueryClientProvider client={queryClient}>
+        <Theme>
+          <Router />
+        </Theme>
+      </QueryClientProvider>
     </div>
   )
 }

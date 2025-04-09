@@ -4,12 +4,13 @@ import electron from 'vite-plugin-electron/simple'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 // https://vitejs.dev/config/
+import tailwind from "tailwindcss";
+import autoprefixer from "autoprefixer";
 export default defineConfig({
 
   plugins: [
     react(),
     tailwindcss(),
-
     electron({
       main: {
         // Shortcut of `build.lib.entry`.
@@ -29,6 +30,17 @@ export default defineConfig({
         : {},
     }),
   ],
+  define: {
+    'process.env': {
+      VITE_API_URL: JSON.stringify(process.env.API_URL)
+    }
+  },
+
+  css: {
+    postcss: {
+      plugins: [tailwind, autoprefixer],
+    }
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'), // Ensure Vite can resolve @ to src

@@ -1,22 +1,22 @@
 import { AuthForm } from '@/components/organisms/AuthForm';
-import React from 'react'
-import { useEffect, useState } from 'react';
+import { Link } from "react-router";
 export const Login = () => {
-  const [user, setUser] = useState(null);
 
 
-
-  const handleSetValue = () => {
-    window.store
-      .set('myKey', 'newValue')
-      .then(() => console.log('Value set successfully'))
-      .catch((error) => console.error('Error setting value:', error));
-  };
 
   return (
-    <div>
-      <AuthForm typeAuth='login' />
-
+    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-4">
+      <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
+        <h1 className="text-3xl font-bold text-center mb-6">Login</h1>
+        <AuthForm typeAuth="login" />
+        <p className="mt-6 text-center text-sm text-gray-600">
+          You dont have account
+          <Link to="/registration" className="text-blue-600 hover:underline font-medium">
+            Registration
+          </Link>
+        </p>
+      </div>
     </div>
+
   )
 }

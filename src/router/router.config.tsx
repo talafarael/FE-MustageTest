@@ -3,6 +3,7 @@ import { Main } from "../pages/Main";
 import { Registration } from "../pages/Registration";
 import { Login } from "../pages/Login";
 import { PrivateRoute } from "@/components/templates/PrivateRouter";
+import { Layout } from "@/components/templates/Layout";
 
 
 export const router = createBrowserRouter([
@@ -18,7 +19,9 @@ export const router = createBrowserRouter([
     path: "/",
     element: (
       <PrivateRoute>
-        <Main />
+        <Layout>
+          <Main />
+        </Layout>
       </PrivateRoute>
     ),
   },

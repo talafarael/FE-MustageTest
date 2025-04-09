@@ -1,20 +1,23 @@
 import { useTokenStore } from '@/store/authTokenStore';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 export interface IAxiosPost<T> {
   path: string
   data: T
 }
-export const AxiosPost = <T>({ path, data }: IAxiosPost<T>) => {
-  axios.post(`${process.env.API_PORT}${path}`, data)
+const API_URL = import.meta.env.VITE_API_URL;
+
+export const AxiosPost = <T, U = any>({ path, data }: IAxiosPost<T>): Promise<AxiosResponse<U>> => {
+  return axios.post<U>(`${API_URL}${path}`, data);
 }
-export interface IAxiosPost<T> {
+export interface IAxiosPostAuth<T> {
   path: string
   data: T
+  token: string
 }
-export const AxiosPostAuth = <T>({ path, data }: IAxiosPost<T>) => {
-  const { token } = useTokenStore()
-  axios.post(`${process.env.API_PORT}${path}`, data, {
+
+export const AxiosPostAuth = <T, U = any>({ path, data, token }: IAxiosPostAuth<T>): Promise<AxiosResponse<U>> => {
+  return axios.post(`${API_URL}${path}`, data, {
     headers: {
       Authorization: `Bearer ${token}`
     }

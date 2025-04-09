@@ -58,6 +58,9 @@ async function createWindow() {
   ipcMain.handle('store-set', (event, key, value) => {
     store.set(key, value);
   });
+  ipcMain.handle('store-delete', async (_, key: string) => {
+    store.delete(key);
+  });
 }
 
 // Quit when all windows are closed, except on macOS. There, it's common

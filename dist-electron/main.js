@@ -37,6 +37,9 @@ async function createWindow() {
   ipcMain.handle("store-set", (event, key, value) => {
     store.set(key, value);
   });
+  ipcMain.handle("store-delete", async (_, key) => {
+    store.delete(key);
+  });
 }
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
