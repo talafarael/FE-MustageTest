@@ -22,3 +22,7 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
   // You can expose other APTs you need here.
   // ...
 })
+contextBridge.exposeInMainWorld('store', {
+  get: (key: string) => ipcRenderer.invoke('store-get', key),
+  set: (key: string, value: any) => ipcRenderer.invoke('store-set', key, value),
+});

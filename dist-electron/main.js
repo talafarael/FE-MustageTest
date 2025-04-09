@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
 import { createRequire } from "node:module";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
@@ -10,13 +10,19 @@ const MAIN_DIST = path.join(process.env.APP_ROOT, "dist-electron");
 const RENDERER_DIST = path.join(process.env.APP_ROOT, "dist");
 process.env.VITE_PUBLIC = VITE_DEV_SERVER_URL ? path.join(process.env.APP_ROOT, "public") : RENDERER_DIST;
 let win;
-function createWindow() {
+async function createWindow() {
+  const { default: Store } = await import("./index-dYcZ_W3M.js");
+  const store = new Store();
   win = new BrowserWindow({
     icon: path.join(process.env.VITE_PUBLIC, "electron-vite.svg"),
     webPreferences: {
-      preload: path.join(__dirname, "preload.mjs")
+      preload: path.join(__dirname, "preload.mjs"),
+      nodeIntegration: false,
+      // Disable nodeIntegration for security
+      contextIsolation: true
     }
   });
+  win.webContents.openDevTools();
   win.webContents.on("did-finish-load", () => {
     win == null ? void 0 : win.webContents.send("main-process-message", (/* @__PURE__ */ new Date()).toLocaleString());
   });
@@ -25,6 +31,12 @@ function createWindow() {
   } else {
     win.loadFile(path.join(RENDERER_DIST, "index.html"));
   }
+  ipcMain.handle("store-get", (event, key) => {
+    return store.get(key);
+  });
+  ipcMain.handle("store-set", (event, key, value) => {
+    store.set(key, value);
+  });
 }
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {

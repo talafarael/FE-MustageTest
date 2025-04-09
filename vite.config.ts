@@ -2,11 +2,14 @@ import { defineConfig } from 'vite'
 import path from 'node:path'
 import electron from 'vite-plugin-electron/simple'
 import react from '@vitejs/plugin-react'
-
+import tailwindcss from '@tailwindcss/vite'
 // https://vitejs.dev/config/
 export default defineConfig({
+
   plugins: [
     react(),
+    tailwindcss(),
+
     electron({
       main: {
         // Shortcut of `build.lib.entry`.
@@ -26,4 +29,18 @@ export default defineConfig({
         : {},
     }),
   ],
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'), // Ensure Vite can resolve @ to src
+      '@atoms': path.resolve(__dirname, 'src/components/atoms'),
+      '@molecules': path.resolve(__dirname, 'src/components/molecules'),
+      '@organisms': path.resolve(__dirname, 'src/components/organisms'),
+      '@templates': path.resolve(__dirname, 'src/components/templates'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+      '@api': path.resolve(__dirname, 'src/api'),
+      '@store': path.resolve(__dirname, 'src/store'),
+    },
+  },
 })
