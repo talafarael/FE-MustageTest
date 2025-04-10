@@ -5,7 +5,7 @@ export interface InputFieldProps {
   error?: string;
   validation: any
 }
-export const Input: React.FC<InputFieldProps> = ({ field, placeholder, error, validation }) => {
+export const Input: React.FC<InputFieldProps> = ({ field, placeholder, error }) => {
   return (
     <div className="relative">
       <input

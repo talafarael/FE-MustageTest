@@ -1,30 +1,20 @@
-# React + TypeScript + Vite
+Here is the instruction for running a Vite project with the environment variable VITE_API_URL=<http://localhost:9000>:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Step 1: Install Dependencies
+First, you need to install all the project dependencies. Open your terminal and run the following command:
 
-Currently, two official plugins are available:
+npm install
+Step 2: Set the Environment Variable
+To set the environment variable, create a .env file in the root directory of your project (if it doesn't exist already) and add the following line:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+VITE_API_URL=<http://localhost:9000>
+This file will be used to store the environment configuration, which will be accessible in your project.
 
-## Expanding the ESLint configuration
+Step 3: Start the Development Server
+Once the environment variable is set, you can start the development server with the following command:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+npm run dev
+Step 4: Check the Application
+After starting the server, open your application in the browser at <http://localhost:5173> (or another port specified in the Vite configuration).
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+The environment variable VITE_API_URL will be available in the code and will be used for API requests pointing to <http://localhost:9000>

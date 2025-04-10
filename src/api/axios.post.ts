@@ -1,4 +1,3 @@
-import { useTokenStore } from '@/store/authTokenStore';
 import axios, { AxiosResponse } from 'axios';
 
 export interface IAxiosPost<T> {

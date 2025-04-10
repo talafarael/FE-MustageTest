@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import './App.css'
 import { Router } from './router'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'

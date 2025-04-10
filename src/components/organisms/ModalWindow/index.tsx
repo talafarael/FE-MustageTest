@@ -1,5 +1,4 @@
-import { InputForm } from "@/components/molecules/InputForm";
-import { Dialog, Text, Button } from "@radix-ui/themes";
+import { Dialog, Button } from "@radix-ui/themes";
 import { TaskForm } from "../TaskForm";
 
 export interface WindowModalProps {
@@ -13,7 +12,7 @@ export const WindowModal: React.FC<WindowModalProps> = ({ typeAction, title, des
   return (
     <Dialog.Root>
       <Dialog.Trigger >
-        <Button>Click me</Button>
+        <Button>{titleButton}</Button>
       </Dialog.Trigger>
       <Dialog.Content className="max-w-[300px] p-4">
         <TaskForm id={id} typeAction={typeAction} title={title} description={description} />

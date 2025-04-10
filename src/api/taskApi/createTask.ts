@@ -1,5 +1,4 @@
 import { ITaskChagne, ITaskCreate } from "@/types/api/ITaskCreate";
-import { IUserCreate } from "@/types/api/IUserCreate";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { AxiosPostAuth } from "../axios.post";
 import { useTokenStore } from "@/store/authTokenStore";

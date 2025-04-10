@@ -1,7 +1,6 @@
 import { ITask } from '@/types/api/IUser'
-import { Text, CheckboxCards } from '@radix-ui/themes'
+import { Text } from '@radix-ui/themes'
 import { WindowModal } from '../organisms/ModalWindow'
-import { Button } from '../ui/button'
 import { Buttons } from '../atoms/Buttons'
 import { useDeleteTask } from '@/hooks/useTask'
 import * as Checkbox from '@radix-ui/react-checkbox';

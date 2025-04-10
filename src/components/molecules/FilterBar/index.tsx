@@ -1,6 +1,6 @@
 import { useTaskParamStore } from '@/store/taskParamStore';
 import { Select } from '@radix-ui/themes';
-import React, { useState } from "react"
+import { useState } from "react"
 
 export const FilteBar = () => {
   const [selected, setSelected] = useState<true | false | null>(null);

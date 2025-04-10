@@ -1,9 +1,7 @@
 import { app, BrowserWindow, ipcMain } from 'electron'
-import { createRequire } from 'node:module'
 import { fileURLToPath } from 'node:url'
 import path from 'node:path'
 
-const require = createRequire(import.meta.url)
 const __dirname = path.dirname(fileURLToPath(import.meta.url))
 
 
@@ -39,7 +37,7 @@ async function createWindow() {
       contextIsolation: true,
     },
   })
-  win.webContents.openDevTools()
+  //win.webContents.openDevTools()
   // Test active push message to Renderer-process.
   win.webContents.on('did-finish-load', () => {
     win?.webContents.send('main-process-message', (new Date).toLocaleString())
@@ -51,11 +49,11 @@ async function createWindow() {
     // win.loadFile('dist/index.html')
     win.loadFile(path.join(RENDERER_DIST, 'index.html'))
   }
-  ipcMain.handle('store-get', (event, key) => {
+  ipcMain.handle('store-get', (_, key) => {
     return store.get(key);
   });
 
-  ipcMain.handle('store-set', (event, key, value) => {
+  ipcMain.handle('store-set', (_, key, value) => {
     store.set(key, value);
   });
   ipcMain.handle('store-delete', async (_, key: string) => {

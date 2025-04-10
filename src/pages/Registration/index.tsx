@@ -4,7 +4,7 @@ import { Link } from "react-router";
 
 export const Registration = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-4">
+    <div className="h-[90vh] flex flex-col items-center justify-center bg-gray-100 px-4">
       <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
         <h1 className="text-3xl font-bold text-center mb-6">Registration</h1>
         <AuthForm typeAuth="registration" />
