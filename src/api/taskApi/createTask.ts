@@ -58,3 +58,20 @@ export const useDeleteTaskMutation = () => {
     },
   });
 };
+export const useChangeCompleteMutation = () => {
+  const queryClient = useQueryClient();
+  const { token } = useTokenStore()
+
+  return useMutation({
+    mutationFn: (id: string) => {
+      return AxiosPostAuth<null, boolean>({
+        path: `/task/change-complete?taskId=${id}`,
+        data: null,
+        token: token ? token : ""
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["get-user"] });
+    },
+  });
+};
